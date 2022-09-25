@@ -6,7 +6,7 @@ import swal from 'sweetalert'
 export const PeticionesApi=()=>{
     const navigate=useNavigate();
 
-    const url= "https://apiempresamintic2022.herokuapp.com/"
+    const url= "https://apimintic2022.herokuapp.com/"
     //const url="http://localhost:8080/"
 
     const{setEmpresas, 
