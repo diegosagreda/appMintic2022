@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { PeticionesApi } from "../../peticioneApi/PeticionesApi";
 import {BallTriangle} from 'react-loader-spinner'
 import './recargo.css'
@@ -36,4 +36,4 @@ const Recargo = () => {
   )
 }
 
-export default Recargo
+export default Recargo;
