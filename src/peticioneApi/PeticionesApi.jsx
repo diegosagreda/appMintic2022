@@ -6,8 +6,8 @@ import swal from 'sweetalert'
 export const PeticionesApi=()=>{
     const navigate=useNavigate();
 
-    //const url= "https://apiempresamintic2022.herokuapp.com/"
-    const url="http://localhost:8080/"
+    const url= "https://apiempresamintic2022.herokuapp.com/"
+    //const url="http://localhost:8080/"
 
     const{setEmpresas, 
         setEmpleados, 
@@ -17,7 +17,11 @@ export const PeticionesApi=()=>{
         setTotalEgresado,
         setLogueado,
         setUsuario,
-        usuario    
+        usuario,
+        setTodosEmpleados,
+        todosEmpleados, 
+        todasEmpresas, 
+        setTodasEmpresas
     }=useContext(AppContext)
 
 //####################### FUNCION PARA EMPRESA #################################################
@@ -35,22 +39,47 @@ export const PeticionesApi=()=>{
             console.log(error)            
         }
     }
+    const cargarTodasEmpresas=async()=>{
+        try {          
+            const respuesta=await fetch(url+"empresas")
+            if(respuesta.status===200){
+                const respuestaEmpresas=await respuesta.json()
+                setTodasEmpresas(respuestaEmpresas) 
+            }            
+        } catch (error) {
+            console.log(error)            
+        }
+    }
+    const buscarEmpresaNit=(nitempresa)=>{
+        const empresaEncontrada=todasEmpresas.filter(empr=>empr.nitempresa==nitempresa)
+        if(empresaEncontrada.length===0){
+         return true
+        }else{
+         return false
+        }
+     }
+       
 
     //Esta funcion añade una empresa
     const añadirEmpresa=async(empresa)=>{
-        try {
-            const respuesta=await fetch(url+"empresa", {
-                method:'POST',
-                headers:{'Content-Type':'application/json'},
-                body:JSON.stringify(empresa)                
-            }) 
-            if(respuesta.status===200){
-                    swal("Empresa añadida con exito")
+        if(buscarEmpresaNit(empresa.nitempresa)){
+            try {
+                const respuesta=await fetch(url+"empresa", {
+                    method:'POST',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify(empresa)                
+                }) 
+                if(respuesta.status===200){
+                        swal("Empresa añadida con exito")
+                }
+                
+            } catch (error) {
+                console.log(error)
             }
-            
-        } catch (error) {
-            console.log(error)
+        }else{
+            swal("Ya existe una empresa con el Nit registrado")
         }
+        
     }
      //Esta funcion actualiza una empresa
      const actualizarEmpresa=async(empresa)=>{
@@ -102,6 +131,18 @@ export const PeticionesApi=()=>{
             console.log(error)            
         }
     }
+    //cargar empleados sin restriccion
+    const cargarTodosEmpleados=async()=>{
+        try {          
+            const respuesta=await fetch(url+"empleados")
+            if(respuesta.status===200){
+                const respuestaEmpleados=await respuesta.json()               
+                setTodosEmpleados(respuestaEmpleados) 
+            }            
+        } catch (error) {
+            console.log(error)            
+        }
+    }
 
     // funcion para crear el usuario
 
@@ -117,54 +158,46 @@ export const PeticionesApi=()=>{
         }
     }  
     
-    const buscarEmpleadoId=async(cedulaempleado)=>{
-        try {          
-            const respuesta=await fetch(url+"empleado/"+ cedulaempleado)
-            console.log(respuesta)
-            if(respuesta.status===200){
-                const respuestaEmpleadoId=await respuesta.json()  
-                
-                if(respuestaEmpleadoId.length>0) {
-                    
-                    console.log("ya esta") 
-                }else{
-                    console.log("no esta") 
-                }
-                                    
-            }            
-        } catch (error) {
-            console.log(error)            
-        }
-
+    const buscarEmpleadoId=(cedulaempleado)=>{
+       const empleadoEncontrado=todosEmpleados.filter(emp=>emp.cedulaempleado==cedulaempleado)
+       if(empleadoEncontrado.length===0){
+        return true
+       }else{
+        return false
+       }
     }
       
 
     //Esta funcion añade una empleado
     const añadirEmpleado=async(empleado)=>{
-        buscarEmpleadoId(empleado.cedulaempleado)
-        // try {
-        //     const respuesta=await fetch(url+"empleado", {
-        //         method:'POST',
-        //         headers:{'Content-Type':'application/json'},
-        //         body:JSON.stringify(empleado)                
-        //     }) 
-        //     if(respuesta.status===200){
-        //         swal("Se registro el empleado exitosamente")
-        //         //Luego que se cree el empleado en db se crea su respectivo usuario, donde 
-        //         //usuario=cedula, constraseña=cedula
-        //         const usuario={
-        //             usuario: empleado.cedulaempleado,
-        //             contraseña:empleado.cedulaempleado,
-        //                 empleado: {
-        //                     cedulaempleado:parseInt(empleado.cedulaempleado)
-        //                 }
-        //         }
-        //         crearUsuario(usuario)
-        //     }
-            
-        // } catch (error) {
-        //     console.log(error)
-        // }
+        if( buscarEmpleadoId(empleado.cedulaempleado)){
+            try {
+                const respuesta=await fetch(url+"empleado", {
+                    method:'POST',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify(empleado)                
+                }) 
+                if(respuesta.status===200){
+                    swal("Se registro el empleado exitosamente")
+                    //Luego que se cree el empleado en db se crea su respectivo usuario, donde 
+                    //usuario=cedula, constraseña=cedula
+                    const usuario={
+                        usuario: empleado.cedulaempleado,
+                        contraseña:empleado.cedulaempleado,
+                            empleado: {
+                                cedulaempleado:parseInt(empleado.cedulaempleado)
+                            }
+                    }
+                    crearUsuario(usuario)
+                }
+               
+            } catch (error) {
+                console.log(error)
+            }
+        }else{
+            swal("El usuario que va a registra ya se encuentra en el sistema")
+        }  
+        
     }
     //Esta funcion actualiza un empleado
     const actualizarEmpleado=async(empleado)=>{
@@ -412,7 +445,10 @@ export const PeticionesApi=()=>{
         calcularTotalIngreso,
         calcularTotalEgreso,
         iniciarSesion,
-        crearUsuario
+        crearUsuario,
+        buscarEmpleadoId,
+        cargarTodosEmpleados,
+        cargarTodasEmpresas
         
     }    
 }

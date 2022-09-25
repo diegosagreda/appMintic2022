@@ -20,6 +20,8 @@ export const DataProvider=({children})=>{
     const [totalEgresado, setTotalEgresado] = useState(0);
     const [logueado, setLogueado] = useState(false);  
     const [pagina, setPagina] = useState("principal")
+    const [todosEmpleados, setTodosEmpleados] = useState([]);
+    const [todasEmpresas, setTodasEmpresas] = useState([]);
 
     return(
         <AppContext.Provider value={{
@@ -35,7 +37,9 @@ export const DataProvider=({children})=>{
             totalIngresado, setTotalIngresado,
             totalEgresado, setTotalEgresado,
             logueado, setLogueado,
-            pagina, setPagina
+            pagina, setPagina,
+            todosEmpleados, setTodosEmpleados,
+            todasEmpresas, setTodasEmpresas
 
         }}>{children}</AppContext.Provider>
 

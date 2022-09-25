@@ -78,10 +78,7 @@ const TablaEgresos = () => {
                         </td>
                     </tr>
                 ))}
-                        
-                   
-                  
-                   
+                
                 </tbody>
             </table>
             <div className='total-egresos'>
@@ -89,7 +86,7 @@ const TablaEgresos = () => {
             </div>
 
             {modal && <ModalEgresos/>}
-        </div>+
+        </div>
     </div>
   )
 }

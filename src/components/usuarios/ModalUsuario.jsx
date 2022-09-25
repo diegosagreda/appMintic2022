@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { AppContext } from '../../context/AppContex'
 import './modalUsuario.css'  
 import icono_cerrar from '../../img/cerrar.svg'
@@ -7,7 +7,7 @@ import { PeticionesApi } from '../../peticioneApi/PeticionesApi'
 const ModalUsuario= () => { 
     const{setModal, empleado, setEmpleado}=useContext(AppContext)
 
-    const{añadirEmpleado, actualizarEmpleado, cargarEmpleados}=PeticionesApi();
+    const{añadirEmpleado, actualizarEmpleado, cargarEmpleados, cargarTodosEmpleados}=PeticionesApi();
 
     const [infEmpleado, setInfEmpleado] = useState({
         cedulaempleado:empleado.cedulaempleado? empleado.cedulaempleado:"",
@@ -24,6 +24,10 @@ const ModalUsuario= () => {
             "tipo": "Principal"
         }
     });
+
+    useEffect(()=>{
+        cargarTodosEmpleados();
+    },[])
     const handleOnchange=(e)=>{
         setInfEmpleado({
             ...infEmpleado, [e.target.name]:e.target.value

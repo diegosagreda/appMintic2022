@@ -1,4 +1,4 @@
-import { useState, useContext} from 'react'
+import { useState, useContext, useEffect} from 'react'
 import './modalEmpresa.css' 
 import { AppContext } from '../../context/AppContex';
 import icono_cerrar from '../../img/cerrar.svg'
@@ -6,7 +6,7 @@ import Mensaje from '../mensaje/Mensaje';
 import { PeticionesApi } from '../../peticioneApi/PeticionesApi';
 const ModalEmpresa= () => { 
     const{empresa, setEmpresa, mensaje, setModal, setEmpresas}=useContext(AppContext)
-    const{cargarEmpresas, añadirEmpresa, actualizarEmpresa}=PeticionesApi();
+    const{cargarEmpresas, añadirEmpresa, actualizarEmpresa, cargarTodasEmpresas}=PeticionesApi();
     
     const [infEmpresa, setInfEmpresa] = useState({
         nitempresa:empresa.nitempresa? empresa.nitempresa:"",
@@ -16,6 +16,11 @@ const ModalEmpresa= () => {
         estado:true,
         tipo:"Cliente"
     });
+
+    useEffect(() => {
+       cargarTodasEmpresas();
+    },[]);
+
     const handleOnchange=(e)=>{
         setInfEmpresa({
             ...infEmpresa, [e.target.name]:e.target.value
