@@ -17,8 +17,8 @@ const TablaUsuario = () => {
     },[]);
 
      //eliminar empleado
-  const handleEliminarEmpleado=async(cedulaempleado)=>{
-    await eliminarEmpleado(cedulaempleado);
+  const handleEliminarEmpleado=async(empleado)=>{
+    await eliminarEmpleado(empleado);
     await cargarEmpleados()
 
   }
@@ -74,7 +74,7 @@ const TablaUsuario = () => {
                             <img
                             src={iconoeliminar}
                             alt="eliminar"
-                            onClick={()=>handleEliminarEmpleado(emple.cedulaempleado)}
+                            onClick={()=>handleEliminarEmpleado(emple)}
                             />                         
                         </td>
                     </tr> 

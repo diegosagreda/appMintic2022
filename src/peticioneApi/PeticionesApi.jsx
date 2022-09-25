@@ -6,8 +6,8 @@ import swal from 'sweetalert'
 export const PeticionesApi=()=>{
     const navigate=useNavigate();
 
-    const url= "https://apiempresamintic2022.herokuapp.com/"
-    //const url="http://localhost:8080/"
+    //const url= "https://apiempresamintic2022.herokuapp.com/"
+    const url="http://localhost:8080/"
 
     const{setEmpresas, 
         setEmpleados, 
@@ -28,7 +28,7 @@ export const PeticionesApi=()=>{
             const respuesta=await fetch(url+"empresas")
             if(respuesta.status===200){
                 const respuestaEmpresas=await respuesta.json()
-                const empresasClientes=respuestaEmpresas.filter(emcli=>emcli.tipo==="Cliente")
+                const empresasClientes=respuestaEmpresas.filter(emcli=>emcli.tipo==="Cliente" && emcli.estado===true)
                 setEmpresas(empresasClientes) 
             }            
         } catch (error) {
@@ -69,15 +69,18 @@ export const PeticionesApi=()=>{
         }
     }
         //Metodo para eliminar empresa
-        const eliminarEmpresa=async(nitempresa)=>{
+        const eliminarEmpresa=async(empresa)=>{
+            empresa.estado=false
             try {
-                const respuesta= await fetch (url + "empresa/" + nitempresa,{
-                    method:'DELETE',
-                    headers:{'Content-Type':'application/json'}
-                })
+                const respuesta=await fetch(url+"empresa", {
+                    method:'POST',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify(empresa)                
+                }) 
                 if(respuesta.status===200){
-                    swal("Empresa eliminada con exito")
-            }                
+                        swal("Empresa desactivada exitosamente")
+                }
+                
             } catch (error) {
                 console.log(error)
             }
@@ -92,12 +95,15 @@ export const PeticionesApi=()=>{
             const respuesta=await fetch(url+"empleados")
             if(respuesta.status===200){
                 const respuestaEmpleados=await respuesta.json()
-                setEmpleados(respuestaEmpleados) 
+                const empleadosActivos=respuestaEmpleados.filter(empl=>empl.estado===true)
+                setEmpleados(empleadosActivos) 
             }            
         } catch (error) {
             console.log(error)            
         }
     }
+
+    // funcion para crear el usuario
 
     const crearUsuario=async(usuario)=>{
         try {
@@ -109,34 +115,56 @@ export const PeticionesApi=()=>{
         } catch (error) {
             console.log(error)
         }
-    }       
+    }  
+    
+    const buscarEmpleadoId=async(cedulaempleado)=>{
+        try {          
+            const respuesta=await fetch(url+"empleado/"+ cedulaempleado)
+            console.log(respuesta)
+            if(respuesta.status===200){
+                const respuestaEmpleadoId=await respuesta.json()  
+                
+                if(respuestaEmpleadoId.length>0) {
+                    
+                    console.log("ya esta") 
+                }else{
+                    console.log("no esta") 
+                }
+                                    
+            }            
+        } catch (error) {
+            console.log(error)            
+        }
+
+    }
       
 
-    //Esta funcion añade una empresa
+    //Esta funcion añade una empleado
     const añadirEmpleado=async(empleado)=>{
-        try {
-            const respuesta=await fetch(url+"empleado", {
-                method:'POST',
-                headers:{'Content-Type':'application/json'},
-                body:JSON.stringify(empleado)                
-            }) 
-            if(respuesta.status===200){
-                swal("Se registro el empleado exitosamente")
-                //Luego que se cree el empleado en db se crea su respectivo usuario, donde 
-                //usuario=cedula, constraseña=cedula
-                const usuario={
-                    usuario: empleado.cedulaempleado,
-                    contraseña:empleado.cedulaempleado,
-                        empleado: {
-                            cedulaempleado:parseInt(empleado.cedulaempleado)
-                        }
-                }
-                crearUsuario(usuario)
-            }
+        buscarEmpleadoId(empleado.cedulaempleado)
+        // try {
+        //     const respuesta=await fetch(url+"empleado", {
+        //         method:'POST',
+        //         headers:{'Content-Type':'application/json'},
+        //         body:JSON.stringify(empleado)                
+        //     }) 
+        //     if(respuesta.status===200){
+        //         swal("Se registro el empleado exitosamente")
+        //         //Luego que se cree el empleado en db se crea su respectivo usuario, donde 
+        //         //usuario=cedula, constraseña=cedula
+        //         const usuario={
+        //             usuario: empleado.cedulaempleado,
+        //             contraseña:empleado.cedulaempleado,
+        //                 empleado: {
+        //                     cedulaempleado:parseInt(empleado.cedulaempleado)
+        //                 }
+        //         }
+        //         crearUsuario(usuario)
+        //     }
             
-        } catch (error) {
-            console.log(error)
-        }
+        // } catch (error) {
+        //     console.log(error)
+        // }
     }
     //Esta funcion actualiza un empleado
     const actualizarEmpleado=async(empleado)=>{
@@ -154,16 +182,19 @@ export const PeticionesApi=()=>{
             console.log(error)
         }
     }
-        //Metodo para eliminar empresa
-        const eliminarEmpleado=async(cedulaempleado)=>{
+        //Metodo para eliminar empleado
+        const eliminarEmpleado=async(empleado)=>{
+            empleado.estado=false
             try {
-                const respuesta= await fetch (url + "empleado/" + cedulaempleado,{
-                    method:'DELETE',
-                    headers:{'Content-Type':'application/json'}
-                })
+                const respuesta=await fetch(url+"empleado", {
+                    method:'POST',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify(empleado)                
+                }) 
                 if(respuesta.status===200){
-                    swal("Empleado eliminadao con exito")
-            }                
+                    swal("Empleado desactivado exitosamente")
+                }
+                
             } catch (error) {
                 console.log(error)
             }

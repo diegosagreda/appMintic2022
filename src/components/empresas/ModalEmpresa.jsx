@@ -13,6 +13,7 @@ const ModalEmpresa= () => {
         nombre:empresa.nombre?empresa.nombre:"",
         direccion:empresa.direccion?empresa.direccion:"",
         telefono:empresa.telefono?empresa.telefono:"",
+        estado:true,
         tipo:"Cliente"
     });
     const handleOnchange=(e)=>{

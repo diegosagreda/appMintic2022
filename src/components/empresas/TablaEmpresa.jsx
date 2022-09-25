@@ -16,8 +16,8 @@ useEffect(()=>{
 },[])
 
  //eliminar empresa
- const handleEliminarEmpresa=async(nitempresa)=>{
-    await eliminarEmpresa(nitempresa);
+ const handleEliminarEmpresa=async(empresa)=>{
+    await eliminarEmpresa(empresa);
     await cargarEmpresas();
 } 
   //modificar empresa
@@ -68,7 +68,7 @@ useEffect(()=>{
                             <img
                             src={iconoeliminar}
                             alt="eliminar"
-                            onClick={()=>handleEliminarEmpresa(emp.nitempresa)}
+                            onClick={()=>handleEliminarEmpresa(emp)}
                             />                         
                         </td>
                     </tr>

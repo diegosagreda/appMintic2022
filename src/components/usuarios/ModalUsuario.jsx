@@ -15,6 +15,7 @@ const ModalUsuario= () => {
         email:empleado.email?empleado.email:"",
         rol:"Empleado",
         telefono:empleado.telefono?empleado.telefono:"",
+        estado:true,
         empresa: {
             "nitempresa": 2,
             "nombre": "Langel",
