@@ -2,7 +2,7 @@ import './principal.css'
 import iconoingresogasto from '../../img/icono-ingresosgastos.png'
 import iconousuarios from '../../img/icono-usuarios.png'
 import iconoempresas from '../../img/icono-empresas.png'
-import Recargo from '../recargo/recargo'
+
 
 const Principal = () => {
 
