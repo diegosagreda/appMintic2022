@@ -1,0 +1,10 @@
+.contenedor-empresa{
+    
+    width: 90%;
+    max-width: 120rem;
+    margin: auto;
+   
+}
+.header-empresa h2{
+    text-align: center;    
+}

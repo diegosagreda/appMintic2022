@@ -1,0 +1,67 @@
+.contenido-empresas{
+    margin-bottom: 5rem;      
+   
+}
+.contenido-empresa h3{
+   text-align: center;
+   color: rgb(255, 187, 0);
+   -webkit-text-stroke: 0.5px rgb(80, 79, 79);
+   text-transform: uppercase;  
+}
+
+table{
+    width: 100%;  
+    border-collapse: collapse;
+    overflow: scroll;
+}
+.tabla-empresa thead th{
+    background-color: rgb(2, 62, 55);
+    padding: 1rem;
+    border-bottom: solid 5px #0F362D;
+    color: white;
+   
+}
+.tabla-empresa tbody td{   
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 1rem;
+     
+}
+.tabla-usuario tr{
+     border-bottom: solid 1px gray;      
+}
+.tabla-empresa tr:nth-child(even){
+    background-color:rgba(132, 131, 130, 0.2);
+}
+.input-nuevoempresa{    
+    display: flex;
+    justify-content: end;
+    margin-bottom: 1rem;
+}
+.input-nuevoempresa input{
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(39, 39, 33);
+    color: white;
+    border-radius: 1rem;
+    transition-duration: .5s;
+}
+.input-nuevoempresa input:hover{
+    transform: scale(1.1 ,1.1);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+ }
+ .tabla-empresa img{
+    width: 2rem;
+    margin-left: 2rem;
+    cursor: pointer;
+    transition-duration: .3s;
+ }
+ .tabla-empresa img:hover{
+    transform: scale(1.2,1.2);
+    transition-duration: .3s;
+ }
+

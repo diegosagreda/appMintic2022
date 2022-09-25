@@ -1,0 +1,22 @@
+.contenedor-ingresosgastos{
+    
+    width: 90%;
+    max-width: 120rem;
+    margin: auto;
+}
+.header-ingresosgastos h2{
+    text-align: center;    
+}
+.nav-ingresosgastos a{
+    margin-right: 2rem;
+    font-size: 1.7rem;
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+}
+.nav-ingresosgastos a:nth-child(1){
+   border-bottom: solid 4px rgb(255, 187, 0);
+}
+.nav-ingresosgastos a:nth-child(2){
+   border-bottom: solid 4px rgb(26, 227, 8);
+}

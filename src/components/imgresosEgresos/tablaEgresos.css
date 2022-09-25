@@ -1,0 +1,73 @@
+.contenido-tablaegresos h3{
+    text-align: center;
+    color: rgb(26, 227, 8);
+    -webkit-text-stroke: 0.5px rgb(80, 79, 79);
+    text-transform: uppercase;  
+ }
+table{
+    width: 100%;  
+    border-collapse: collapse;
+}
+.tabla-egresos thead th{
+    background-color: rgb(16, 50, 55);
+    padding: 1rem;
+    border-bottom: solid 5px #0F362D;
+    color: white;
+   
+}
+.tabla-egresos tbody td{   
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 1rem; 
+}
+.tabla-egresos tr{
+     border-bottom: solid 1px gray;      
+}
+.tabla-egresos tr:nth-child(even){
+    background-color:rgba(132, 131, 130, 0.2);
+}
+.total-egresos{
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: end;    
+}
+.total-egresos p{
+    font-size: 2rem;
+    font-weight: 700;
+}
+.total-egresos span{
+    font-size: 2rem;
+    font-weight: normal;
+}
+.input-nuevoegreso{    
+    display: flex;
+    justify-content: end;
+    margin-bottom: 1rem;
+}
+.input-nuevoegreso input{
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(9, 148, 9);
+    color: white;
+    border-radius: 1rem;
+    transition-duration: .5s;
+}
+.input-nuevoegreso input:hover{
+    transform: scale(1.1 ,1.1);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;  
+}
+.tabla-egresos img{
+    width: 2rem;
+    margin-left: 2rem;
+    cursor: pointer;
+    transition-duration: .3s;
+ }
+ .tabla-egresos img:hover{
+    transform: scale(1.2,1.2);
+    transition-duration: .3s;
+ }
+

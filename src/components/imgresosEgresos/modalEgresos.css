@@ -1,0 +1,73 @@
+.contenedor-modalegresos{
+    background-color: rgba(5, 5, 5, 0.93);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;    
+}
+.contenido-egresos{ 
+    width: 40%;
+    max-width: 50rem;
+    margin: auto;
+   margin-top: 5rem;
+  }
+  .contenido-egresos h1{
+    text-align: center;
+    color: white;
+    border-bottom: solid 2px rgb(17, 150, 17);
+    margin-top:  2rem;
+  }
+  .formulario-egresos{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 3rem;
+  }
+.formulario-egresos label{
+    color: white;
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+.formulario-egresos input, select {
+    padding: 1rem;
+    border: none;
+    outline: none;
+    text-align: center;
+    border-radius: 1rem;    
+}
+
+
+
+.input-egreso{    
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.input-egreso input {
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(41, 105, 165);
+    color: white;
+    border-radius: 1rem;
+    transition-duration: .5s;
+}
+.input-egreso input:hover{
+    transform: scale(1.1 ,1.1);  
+}
+
+.cerrar-modal{
+    width: 3rem;
+    position: absolute;
+    right: 0;
+    margin-right: 3rem;
+    margin-top: 3rem;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+.cerrar-modal:hover{
+    transform: scale(1.2,1.2);
+}
