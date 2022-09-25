@@ -1,21 +1,28 @@
-import {useState} from 'react';
-import { AppContext } from '../../context/AppContex';
+import {useState,useEffect,useContext} from 'react';
 import './ingresosGastos.css';
 import TablaIngresos from './TablaIngresos';
 import TablaEgresos from './TablaEgresos';
+import {PeticionesApi} from '../../peticioneApi/PeticionesApi';
+import { AppContext } from '../../context/AppContex';
 
 const IngresosGastos = () => {  
   const [tablaGastos, setTablaGastos] = useState("tablaIngresos");
-  
+  const {calcularTotalIngreso,calcularTotalEgreso} = PeticionesApi();
+  const {transacciones} = useContext(AppContext);
+
+/*   useEffect(()=>{
+    calcularTotalIngreso()
+  },[transacciones])
+   */
   const handleIngresos=(e)=>{
     e.preventDefault();
     setTablaGastos("tablaIngresos")
-    return
+    //calcularTotalIngreso()
   }
   const handleEgresos=(e)=>{
     e.preventDefault();
     setTablaGastos("tablaEgresos")
-    return
+    //calcularTotalEgreso()
   }
 
   return (

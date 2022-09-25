@@ -19,7 +19,7 @@ const TablaIngresos = () => {
         cargarIngresos()  
         cargarEmpresas()
         calcularTotalIngreso()
-      },[])
+      },[transacciones])
 
     //Eliminar ingresos
     const handleEliminarIngreso=async(idtransaccion)=>{
