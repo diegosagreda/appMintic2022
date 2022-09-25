@@ -19,6 +19,7 @@ export const DataProvider=({children})=>{
     const [totalIngresado, setTotalIngresado] = useState(0);
     const [totalEgresado, setTotalEgresado] = useState(0);
     const [logueado, setLogueado] = useState(false);  
+    const [pagina, setPagina] = useState("principal")
 
     return(
         <AppContext.Provider value={{
@@ -33,7 +34,8 @@ export const DataProvider=({children})=>{
             transaccion, setTransaccion,
             totalIngresado, setTotalIngresado,
             totalEgresado, setTotalEgresado,
-            logueado, setLogueado
+            logueado, setLogueado,
+            pagina, setPagina
 
         }}>{children}</AppContext.Provider>
 

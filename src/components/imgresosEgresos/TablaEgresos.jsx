@@ -5,18 +5,19 @@ import './tablaEgresos.css'
 import editar from '../../img/icono_editar.png'
 import eliminar from '../../img/icono_eliminar.png'
 import ModalEgresos from './ModalEgresos';
+import {FormatoMoneda} from '../../helpers/helpers'
 
 const TablaEgresos = () => {
     const{modal, setModal, transacciones, setTransaccion, totalEgresado}=useContext(AppContext);
     const{cargarEgresos, cargarEmpresas, eliminarEgreso, calcularTotalEgreso}=PeticionesApi();
- 
+
     //listar agresos
     useEffect(()=>{
        
         cargarEgresos()  
         cargarEmpresas()
         calcularTotalEgreso()
-    },[]) 
+    },[transacciones]) 
     
     //Eliminar egresos
     const handleEliminarEgreso=async(idtransaccion)=>{
@@ -84,11 +85,11 @@ const TablaEgresos = () => {
                 </tbody>
             </table>
             <div className='total-egresos'>
-                <p>Total: <span>{totalEgresado}</span></p>
+                <p>Total: <span>{FormatoMoneda(totalEgresado)}</span></p>
             </div>
 
             {modal && <ModalEgresos/>}
-        </div>
+        </div>+
     </div>
   )
 }

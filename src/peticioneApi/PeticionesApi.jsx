@@ -273,11 +273,13 @@ export const PeticionesApi=()=>{
 
     //Calcular ingresos
     const calcularTotalIngreso=()=>{
-        let sumaIngresos=0
+       /*  let sumaIngresos=0
         transacciones.forEach(tr => {
             sumaIngresos+=parseFloat(tr.monto)
-        });
-        setTotalIngresado(sumaIngresos)        
+        }); */
+        const valor = transacciones.reduce((total,parcial)=> parseFloat(parcial.monto)+total,0);
+      
+        setTotalIngresado(valor)        
     }
      
   
@@ -352,11 +354,14 @@ export const PeticionesApi=()=>{
         }  
         //Calcular egresos
     const calcularTotalEgreso=()=>{
-        let sumaEgresos=0
+       
+      /*   let sumaEgresos=0
         transacciones.forEach(tr => {
             sumaEgresos+=parseFloat(tr.monto)
         });
-        setTotalEgresado(sumaEgresos)        
+ */
+        const valor = transacciones.reduce((total,parcial)=> parseFloat(parcial.monto)+total,0);
+       setTotalEgresado(valor)        
     }
 
            //############################### FUNCION PARA LOGUEARSE #########################################

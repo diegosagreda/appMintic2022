@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect} from 'react'
+import { useContext} from 'react'
 import { AppContext } from '../../context/AppContex'
 import './home.css'
 import logoPrincipal from '../../img/icono.png'
@@ -13,12 +13,10 @@ import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
  
-  const [pagina, setPagina] = useState("principal")
-  const{usuario, setLogueado}=useContext(AppContext);
-  const navigate=useNavigate();
+const{usuario, setLogueado,pagina, setPagina}=useContext(AppContext);
+const navigate=useNavigate();
 
  
-  
 const handlePrincipal=(e)=>{
   e.preventDefault();
   setPagina("principal")
@@ -26,7 +24,6 @@ const handlePrincipal=(e)=>{
 const handleIngresosGastos=async(e)=>{
   e.preventDefault();
   setPagina("ingresosGastos")
-
 
 }
 
